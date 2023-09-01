@@ -12,6 +12,23 @@ use Illuminate\Support\Facades\Validator;
 
 class ApiAuthController extends Controller
 {
+    public function showUsers() {
+
+        $allMembers = ApiAuth::all();
+
+        if($allMembers->count() > 0 ) {
+            return response()->json([
+                'status' => 200,
+                'members' => $allMembers
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => 400,
+                'message' => 'no records found'   
+            ], 200);
+        }
+    }
+
     public function register(Request $request) {
 
         $validator = Validator::make($request->all(), [

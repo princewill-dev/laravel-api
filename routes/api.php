@@ -19,6 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/show_users', [ApiAuthController::class, 'showUsers'])->name('show');
 
 Route::post('/register', [ApiAuthController::class, 'register'])->name('register');
 
